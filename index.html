@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Traders Paradise</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#000;
+      overflow-x:hidden;
+      color:#fff;
+    }
+
+    /* Animated Background */
+
+    body::before{
+      content:'';
+      position:fixed;
+      width:100%;
+      height:100%;
+      background:
+      radial-gradient(circle at top,#ffd00022,transparent 40%),
+      radial-gradient(circle at bottom,#00ffcc18,transparent 35%),
+      linear-gradient(180deg,#050505,#000814);
+      z-index:-2;
+    }
+
+    body::after{
+      content:'';
+      position:fixed;
+      width:100%;
+      height:100%;
+      background:url('https://www.transparenttextures.com/patterns/stardust.png');
+      opacity:0.06;
+      z-index:-1;
+      animation:bgMove 25s linear infinite;
+    }
+
+    @keyframes bgMove{
+      from{transform:translateY(0);}
+      to{transform:translateY(100px);}
+    }
+
+    .container{
+      width:100%;
+      max-width:500px;
+      margin:auto;
+      padding:50px 10px 10px;
+    }
+
+    .main-card{
+      position:relative;
+      border:2px solid #ffd000;
+      border-radius:20px;
+      overflow:hidden;
+      background:linear-gradient(180deg,#111,#050505);
+      box-shadow:
+      0 0 20px #ffd00055,
+      0 0 60px #ffd00022;
+      animation:glow 3s infinite alternate;
+    }
+
+    @keyframes glow{
+      from{
+        box-shadow:
+        0 0 20px #ffd00055,
+        0 0 50px #ffd00011;
+      }
+      to{
+        box-shadow:
+        0 0 30px #ffd000aa,
+        0 0 90px #ffd00033;
+      }
+    }
+
+    .header{
+      text-align:center;
+      padding:25px 18px 10px;
+    }
+
+    .title{
+      font-size:27px;
+      font-weight:800;
+      line-height:1;
+      letter-spacing:1px;
+    }
+
+    .title span{
+      color:#ffd000;
+      text-shadow:0 0 10px #ffd000;
+    }
+
+    .subtitle{
+      margin-top:8px;
+      font-size:10px;
+      letter-spacing:2px;
+      color:#ddd;
+    }
+
+    .hero{
+      padding:18px;
+    }
+
+    .hero-box{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      border:2px solid #ffd000;
+      box-shadow:0 0 25px #ffd00033;
+    }
+
+    .hero-box img{
+      width:100%;
+      display:block;
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,#000000d9 0%,transparent 70%);
+    }
+
+    .hero-text{
+      position:absolute;
+      left:18px;
+      top:20px;
+      z-index:2;
+      width:55%;
+    }
+
+    .hero-text h2{
+      font-size:22px;
+      line-height:0.9;
+      font-weight:400;
+    }
+
+    .hero-text h1{
+      font-size:45px;
+      line-height:0.8;
+      font-weight:800;
+      color:#fff;
+      margin-top:45px;
+    }
+
+    .hero-text h1 span{
+      color:#ffcc00;
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      padding:20px;
+    }
+
+    .feature{
+      background:#0d0d0d;
+      border:1px solid #ffd00055;
+      border-radius:18px;
+      padding:16px 12px;
+      text-align:center;
+      transition:0.4s;
+    }
+
+    .feature:hover{
+      transform:translateY(-5px);
+      box-shadow:0 0 20px #ffd00055;
+    }
+
+    .feature i{
+      font-size:20px;
+      color:#ffd000;
+      margin-bottom:10px;
+    }
+
+    .feature p{
+      font-size:13px;
+      color:#eee;
+      font-weight:600;
+    }
+
+    .status{
+      margin:0 5px 5px;
+      padding:1px;
+      border-radius:50px;
+      background:#050505;
+      border:2px solid #ffd000;
+      text-align:center;
+      font-weight:800;
+      font-size:12px;
+      box-shadow:0 0 25px #ffd00044;
+      animation:pulse 2s infinite;
+    }
+
+    @keyframes pulse{
+      0%{transform:scale(1);}
+      50%{transform:scale(1.02);}
+      100%{transform:scale(1);}
+    }
+
+    .status span{
+      color:#fff;
+    }
+
+    .btn{
+      display:block;
+      width:calc(100% - 40px);
+      margin:18px auto;
+      text-align:center;
+      text-decoration:none;
+      padding:9px;
+      border-radius:22px;
+      font-size:22px;
+      font-weight:800;
+      transition:0.3s;
+    }
+
+    .btn-yellow{
+      background:linear-gradient(135deg,#00d84a,#1eff74);
+      color:#000;
+      box-shadow:0 0 25px #00ff6666;
+    }
+
+    .btn-yellow:hover{
+      transform:translateY(-3px) scale(1.02);
+    }
+
+    .btn-dark{
+      background:#090909;
+      color:#ffd000;
+      border:2px solid #ffd000;
+      box-shadow:0 0 20px #ffd00033;
+    }
+
+    .btn-dark:hover{
+      background:#111;
+      transform:translateY(-3px);
+    }
+
+    .trust{
+      text-align:center;
+      padding:10px 20px 0;
+    }
+
+    .trust h3{
+      color:#ffd000;
+      font-size:20px;
+      margin-bottom:10px;
+    }
+
+    .trust p{
+      color:#ddd;
+      font-size:16px;
+      margin-bottom:25px;
+    }
+
+    .bottom-buttons{
+      display:flex;
+      gap:12px;
+      padding:0 18px 25px;
+    }
+
+    .bottom-buttons a{
+      flex:1;
+      text-align:center;
+      padding:18px 10px;
+      border-radius:18px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:16px;
+      transition:0.3s;
+    }
+
+    .telegram{
+      background:linear-gradient(135deg,#1e90ff,#37b3ff);
+      color:#fff;
+      box-shadow:0 0 25px #1e90ff66;
+    }
+
+    .contact{
+      background:linear-gradient(135deg,#00d84a,#1eff74);
+      color:#fff;
+      box-shadow:0 0 25px #00ff6666;
+    }
+
+    .bottom-buttons a:hover{
+      transform:translateY(-4px) scale(1.03);
+    }
+
+    .corners span{
+      position:absolute;
+      width:35px;
+      height:35px;
+      border-color:#ffd000;
+      border-style:solid;
+      z-index:10;
+    }
+
+    .corners .tl{
+      top:15px;
+      left:15px;
+      border-width:4px 0 0 4px;
+    }
+
+    .corners .tr{
+      top:15px;
+      right:15px;
+      border-width:4px 4px 0 0;
+    }
+
+    .corners .bl{
+      bottom:15px;
+      left:15px;
+      border-width:0 0 4px 4px;
+    }
+
+    .corners .br{
+      bottom:15px;
+      right:15px;
+      border-width:0 4px 4px 0;
+    }
+
+    @media(max-width:430px){
+
+      .title{
+        font-size:34px;
+      }
+
+      .hero-text h1{
+        font-size:45px;
+      }
+
+      .btn{
+        font-size:22px;
+      }
+
+      .trust h3{
+        font-size:24px;
+      }
+    }
+
+  </style>
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'id');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1499059205262614&ev=PageView&noscript=1"
+/></noscript>  
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="main-card">
+
+      <div class="corners">
+        <span class="tl"></span>
+        <span class="tr"></span>
+        <span class="bl"></span>
+        <span class="br"></span>
+      </div>
+
+      <div class="header">
+        <div class="title">
+          TRADERS <span>PARADISE</span>
+        </div>
+
+        <div class="subtitle">
+          THE ULTIMATE TRADING COMMUNITY
+        </div>
+      </div>
+
+      <div class="hero">
+
+        <div class="hero-box">
+
+          <!-- Replace image -->
+          <img src="https://i.ibb.co/szcwp2K/kc5yx-Yc-Zv-EZww-GTwzi5-YM.png" alt="Stock Market Image">
+          <div class="overlay"></div>
+
+          <div class="hero-text">
+            <h2>Build Success with</h2>
+            <h1>Forex <span>Trading</span></h1>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="status">
+        <span>●</span>
+      TRADERS PARADISE VIP
+      </div>
+      <div class="status">
+        <span></span>
+       10200+ Subscribers
+      </div>
+
+      <a href="https://t.me/+-0DrSpTj3bIyNWM1" class="btn btn-yellow">
+        JOIN OUR VIP COMMUNITY ™️
+      </a>
+
+      <div class="trust">
+        <h3>100% TRUSTED • SAFE • SECURE</h3>
+        <p>Your Success is Our Mission</p>
+      </div>
+    </div>
+        
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
